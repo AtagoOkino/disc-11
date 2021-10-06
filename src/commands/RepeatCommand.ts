@@ -20,18 +20,18 @@ export class RepeatCommand extends BaseCommand {
         const modeEmoji = ["▶", "🔂", "🔁"];
         if (!args[0]) {
             return message.channel.send(
-                createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** Repeating mode **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`)
+                createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** Lặp lại brr brr **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`)
             );
         }
 
         const mode = args[0] as keyof typeof loopMode;
 
         if (loopMode[mode] as any === undefined || !isNaN(Number(mode))) {
-            message.channel.send(createEmbed("error", `Invalid usage, please use **\`${this.client.config.prefix}help ${this.meta.name}\`** for more information.`))
+            message.channel.send(createEmbed("error", `Lỗi, vui lòng dùng **\`${this.client.config.prefix}help ${this.meta.name}\`** để biết thêm thông tin chi tiết.`))
                 .catch(e => this.client.logger.error("REPEAT_CMD_ERR:", e));
         } else {
             message.guild!.queue!.loopMode = loopMode[mode];
-            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** Set repeat mode to **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
+            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** Chuyển chế độ lặp lại sang **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
                 .catch(e => this.client.logger.error("REPEAT_CMD_ERR:", e));
         }
     }

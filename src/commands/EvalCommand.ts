@@ -18,7 +18,7 @@ export class EvalCommand extends BaseCommand {
         const client = this.client;
 
         if (!client.config.owners.includes(msg.author.id)) {
-            return message.channel.send(createEmbed("error", "This command is limited to the bot owner only."));
+            return message.channel.send(createEmbed("error", "Lệnh này được giới hạn bởi Okino."));
         }
 
         const embed = createEmbed("info")
@@ -26,7 +26,7 @@ export class EvalCommand extends BaseCommand {
 
         try {
             const code = args.slice(0).join(" ");
-            if (!code) return message.channel.send(createEmbed("error", "No code were provided."));
+            if (!code) return message.channel.send(createEmbed("error", "Không có code nào được cung cấp."));
             let evaled = await eval(code);
 
             if (typeof evaled !== "string") {
